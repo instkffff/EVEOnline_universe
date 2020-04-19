@@ -1,4 +1,7 @@
 const axios = require('axios')
+const axiosRetry = require('axios-retry')
+
+axiosRetry(instance, { retries: 5 })
 
 const instance = axios.create({
 	baseURL: 'https://esi.evetech.net/latest',
