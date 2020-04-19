@@ -8,6 +8,8 @@ const parser = require('stellar-classification-parser')
 
 const esi = require('./component/esi_data.js')
 
+db.defaults({ system: [], count: 0 }).write()
+
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);

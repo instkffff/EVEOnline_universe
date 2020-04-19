@@ -7,7 +7,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('../systemDB/testsystems.json')
 const db = low(adapter)
 
-db.defaults({ system: {}, count: 0 }).write()
+db.defaults({ system: [], count: 0 }).write()
 
 
 
@@ -34,8 +34,8 @@ async function a(){
 		}
 		console.log(stardb)
 		db.get('system').push({stardb}).write()
+		db.update('count', n=> n+1).write()
 	})
-
 }
 
 a()
