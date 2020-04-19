@@ -1,4 +1,5 @@
 const esi = require('../component/esi_data.js')
+const parser = require('stellar-classification-parser')
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
