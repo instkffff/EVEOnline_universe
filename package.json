@@ -1,0 +1,30 @@
+{
+  "name": "eveonline_universe",
+  "version": "1.0.0",
+  "description": "eve online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instkffff/EVEOnline_universe.git"
+  },
+  "keywords": [
+    "eve",
+    "online",
+    "map"
+  ],
+  "author": "NightCandle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/instkffff/EVEOnline_universe/issues"
+  },
+  "homepage": "https://github.com/instkffff/EVEOnline_universe#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "lowdb": "^1.0.0",
+    "stellar-classification-parser": "^1.1.4"
+  }
+}
