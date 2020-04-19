@@ -1,8 +1,6 @@
 const axios = require('axios')
 const axiosRetry = require('axios-retry')
 
-axiosRetry(instance, { retries: 5 })
-
 const instance = axios.create({
 	baseURL: 'https://esi.evetech.net/latest',
 	timeout: 1000	
@@ -17,6 +15,8 @@ async function esi(router){
 		})
 	}) 
 }
+
+axiosRetry(instance, { retries: 5 })
 
 module.exports.esi = esi
 
