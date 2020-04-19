@@ -1,6 +1,16 @@
 const esi = require('../component/esi_data.js')
 const parser = require('stellar-classification-parser')
 
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+const adapter = new FileSync('../systemDB/testsystems.json')
+const db = low(adapter)
+
+db.defaults({ system: {}, count: 0 }).write()
+
+
+
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
@@ -23,6 +33,7 @@ async function a(){
 			star_spectral_info : star_spectral_info
 		}
 		console.log(stardb)
+		db.get('system').push({stardb}).write()
 	})
 
 }
