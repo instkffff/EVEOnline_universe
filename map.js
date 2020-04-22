@@ -21,7 +21,7 @@ async function systemDB(){
 	let systems = await esi.systems()
 	let count = db.get('count').value()
 	let system_id = systems[count]
-	let systems_info = await esi.systems_info(system_id)
+	let system_info = await esi.systems_info(system_id)
 	let system_name = systems_info.name
 	let constellation_id = system_info.constellation_id
 	let system_position = system_info.system_position
@@ -52,4 +52,4 @@ async function systemDB(){
 
 setInterval(function(){
 	systemDB()
-},500)
+},1000)
