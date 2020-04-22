@@ -49,7 +49,12 @@ async function systemDB(){
 
 }
 
+let count = db.get('count').value()
 
-setInterval(function(){
+if (count===8285){
+	return
+	console.log('job done')
+} else {
 	systemDB()
-},1000)
+}
+
