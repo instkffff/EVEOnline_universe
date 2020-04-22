@@ -45,9 +45,24 @@ async function systemDB(){
 		star_name : star_name,
 		star_color : star_color,
 		luminosity : luminosity
-	})
+	}).write()
+	
+	db.update('count', n=> n+1).write()
 
 }
 
-systemDB()
+setInterval(function(){
+	count = db.get('count').value()
+	last_system = db.get('system[count]').value()
+	last_system_id = last_system.system_id
+	if (last_system_id === 33000050){
+		console.log('job done')
+	} else {
+		systemDB()
+	}
+},500)
+
+
+
+
 
