@@ -48,16 +48,11 @@ async function systemDB(){
 	}).write()
 	
 	db.update('count', n=> n+1).write()
-
+	console.log(count)
 }
 
 setInterval(function(){
-	count = db.get('count').value()
-	if (count === 8285){
-		console.log('job done')
-	} else {
 		systemDB()
-	}
 },500)
 
 
