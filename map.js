@@ -30,8 +30,9 @@ async function systemDB(){
 			let constellation_id = system_info.constellation_id
 			let system_position = system_info.system_position
 			let stargates = system_info.stargates
-			let star_name = system_info.name
+			let star_name = star_info.name
 			let star_color = star_spectral_info.data.colour
+			let luminosity : star_info.luminosity
 			db.get('system').push({
 				system_id : system_id,
 				system_name : system_name,
@@ -40,8 +41,10 @@ async function systemDB(){
 				stargates : stargates,
 				star_id : star_id,
 				star_name : star_name,
-				star_color : star_color
+				star_color : star_color,
+				luminosity : luminosity
 			}).write()
+			db.update('count', n=> n+1).write()
 		})
 	} catch(error) {
 		console.log(error)
