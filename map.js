@@ -48,7 +48,7 @@ async function systemDB(){
 
 setTimeout(function() {
     systemDB()
-}, 0)
+}, 500)
 
 
 
