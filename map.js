@@ -17,38 +17,39 @@ async function asyncForEach(array, callback) {
 }
 
 async function systemDB(){
-	try {
-		let systems = await esi.systems()
-		await asyncForEach(systems, async(system) =>{
-			let system_id = system
-			let system_info = await esi.systems_info(system_id)
-			let star_id = system_info.star_id
-			let star_info = await esi.star_info(star_id)
-			let star_spectral_class = star_info.spectral_class
-			let star_spectral_info = parser.parse(star_spectral_class,true)
-			let system_name = system_info.name
-			let constellation_id = system_info.constellation_id
-			let system_position = system_info.system_position
-			let stargates = system_info.stargates
-			let star_name = star_info.name
-			let star_color = star_spectral_info.data.colour
-			let luminosity = star_info.luminosity
-			db.get('system').push({
-				system_id : system_id,
-				system_name : system_name,
-				constellation_id : constellation_id,
-				system_position : system_position,
-				stargates : stargates,
-				star_id : star_id,
-				star_name : star_name,
-				star_color : star_color,
-				luminosity : luminosity
-			}).write()
-			db.update('count', n=> n+1).write()
-		})
-	} catch(error) {
-		console.log(error)
-	}	
+	//system
+	let systems = await esi.systems()
+	let count = db.get('count').value()
+	let system_id = systems[count]
+	let systems_info = await esi.systems_info(system_id)
+	let system_name = systems_info.name
+	let constellation_id = system_info.constellation_id
+	let system_position = system_info.system_position
+	let stargates = system_info.stargates
+	//star
+	let star_id = systems_info.star_id
+	let star_info = await esi.star_info(star_id)
+	let star_name = star_info.name
+	let luminosity = star_info.luminosity
+	let star_spectral_class = star_info.spectral_class
+	let star_spectral_info = parser.parse(star_spectral_class,true)
+	let star_color = star_spectral_info.data.colour
+
+	db.get('system').push({
+		system_id : system_id,
+		system_name : system_name,
+		constellation_id : constellation_id,
+		system_position : system_position,
+		stargates : stargates,
+		star_id : star_id,
+		star_name : star_name,
+		star_color : star_color,
+		luminosity : luminosity
+	})
+
 }
 
-systemDB()
+
+setInterval(function(){
+	systemDB()
+},500)
