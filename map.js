@@ -10,13 +10,10 @@ const esi = require('./component/esi_data.js')
 
 db.defaults({ system: [], count: 0 }).write()
 
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
+const { setIntervalAsync,clearIntervalAsync } = require('set-interval-async/dynamic')
 
 async function systemDB(){
+
 	//system
 	let systems = await esi.systems()
 	let count = db.get('count').value()
@@ -51,9 +48,12 @@ async function systemDB(){
 	console.log(count)
 }
 
-setInterval(function(){
+setIntervalAsync(
+	() => {
 		systemDB()
-},500)
+	},
+	500
+)
 
 
 
