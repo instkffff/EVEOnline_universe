@@ -53,9 +53,7 @@ async function systemDB(){
 
 setInterval(function(){
 	count = db.get('count').value()
-	last_system = db.get('system[count]').value()
-	last_system_id = last_system.system_id
-	if (last_system_id === 33000050){
+	if (count === 8285){
 		console.log('job done')
 	} else {
 		systemDB()
