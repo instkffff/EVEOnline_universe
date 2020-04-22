@@ -22,12 +22,12 @@ async function systemDB(){
 	let count = db.get('count').value()
 	let system_id = systems[count]
 	let system_info = await esi.systems_info(system_id)
-	let system_name = systems_info.name
+	let system_name = system_info.name
 	let constellation_id = system_info.constellation_id
 	let system_position = system_info.system_position
 	let stargates = system_info.stargates
 	//star
-	let star_id = systems_info.star_id
+	let star_id = system_info.star_id
 	let star_info = await esi.star_info(star_id)
 	let star_name = star_info.name
 	let luminosity = star_info.luminosity
