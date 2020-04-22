@@ -32,7 +32,7 @@ async function systemDB(){
 			let stargates = system_info.stargates
 			let star_name = star_info.name
 			let star_color = star_spectral_info.data.colour
-			let luminosity : star_info.luminosity
+			let luminosity = star_info.luminosity
 			db.get('system').push({
 				system_id : system_id,
 				system_name : system_name,
