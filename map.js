@@ -55,6 +55,8 @@ if (count===8285){
 	return
 	console.log('job done')
 } else {
-	systemDB()
+	setInterval(function(){
+		systemDB()
+	},500)
 }
 
