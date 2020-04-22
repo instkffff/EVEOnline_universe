@@ -26,11 +26,21 @@ async function systemDB(){
 			let star_info = await esi.star_info(star_id)
 			let star_spectral_class = star_info.spectral_class
 			let star_spectral_info = parser.parse(star_spectral_class,true)
-			console.log(system_id)
+			let system_name = system_info.name
+			let constellation_id = system_info.constellation_id
+			let system_position = system_info.system_position
+			let stargates = system_info.stargates
+			let star_name = system_info.name
+			let star_color = star_spectral_info.data.colour
 			db.get('system').push({
-				system_info : system_info ,
-				star_info : star_info ,
-				star_spectral_info : star_spectral_info
+				system_id : system_id,
+				system_name : system_name,
+				constellation_id : constellation_id,
+				system_position : system_position,
+				stargates : stargates,
+				star_id : star_id,
+				star_name : star_name,
+				star_color : star_color
 			}).write()
 		})
 	} catch(error) {
