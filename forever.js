@@ -13,8 +13,10 @@ var child = new (forever.Monitor)('./map.js',{
 child.on('exit',function(){
 	let count = db.get('count').value()
 	if (count === 8285){
-		return stop
+		console.log('done')
 	} else {
 		child.start()
 	}
 })
+
+child.start()
