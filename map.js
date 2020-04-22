@@ -46,11 +46,5 @@ async function systemDB(){
 	console.log(count)
 }
 
-setTimeout(function() {
-    systemDB()
-}, 500)
-
-
-
-
+systemDB()
 
