@@ -19,7 +19,7 @@ async function systemDB(){
 	let system_info = await esi.systems_info(system_id)
 	let system_name = system_info.name
 	let constellation_id = system_info.constellation_id
-	let system_position = system_info.system_position
+	let system_position = system_info.position
 	let stargates = system_info.stargates
 	//star
 	let star_id = system_info.star_id
