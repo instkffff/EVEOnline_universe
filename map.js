@@ -28,8 +28,8 @@ async function systemDB(){
 	let luminosity = star_info.luminosity
 	let star_spectral_class = star_info.spectral_class
 	let spectral = star_spectral_class.replace(/\s/ig,'')
-	if(spectral === A0IV2){
-		let spectral === A0IV
+	if(spectral === 'A0IV2'){
+		let spectral = 'A0IV'
 		let star_spectral_info = parser.parse(spectral,true)
 		let star_color = star_spectral_info.data.colour
 		db.get('system').push({
