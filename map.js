@@ -23,7 +23,7 @@ async function systemDB(){
 	let stargates = system_info.stargates
 	//star
 	let star_id = system_info.star_id
-	if(star_id === 'undefined'){
+	if(typeof(star_id) == 'undefined'){
 		db.get('system').push({
 			system_id : system_id,
 			system_name : system_name,
