@@ -27,7 +27,8 @@ async function systemDB(){
 	let star_name = star_info.name
 	let luminosity = star_info.luminosity
 	let star_spectral_class = star_info.spectral_class
-	let star_spectral_info = parser.parse(star_spectral_class.replace(/\s/ig,''),true)
+	let spectral = star_spectral_class.replace(/\s/ig,'')
+	let star_spectral_info = parser.parse(spectral,true)
 	let star_color = star_spectral_info.data.colour
 
 	db.get('system').push({
