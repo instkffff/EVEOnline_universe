@@ -23,15 +23,7 @@ async function systemDB(){
 	let stargates = system_info.stargates
 	//star
 	let star_id = system_info.star_id
-	let star_info = await esi.star_info(star_id)
-	let star_name = star_info.name
-	let luminosity = star_info.luminosity
-	let star_spectral_class = star_info.spectral_class
-	let spectral = star_spectral_class.replace(/\s/ig,'')
-	if(spectral === 'A0IV2'){
-		let spectral = 'A0IV'
-		let star_spectral_info = parser.parse(spectral,true)
-		let star_color = star_spectral_info.data.colour
+	if(star_id === 'undefined'){
 		db.get('system').push({
 			system_id : system_id,
 			system_name : system_name,
@@ -46,21 +38,45 @@ async function systemDB(){
 		db.update('count', n=> n+1).write()
 		console.log(count)
 	}else{
-		let star_spectral_info = parser.parse(spectral,true)
-		let star_color = star_spectral_info.data.colour
-		db.get('system').push({
-			system_id : system_id,
-			system_name : system_name,
-			constellation_id : constellation_id,
-			system_position : system_position,
-			stargates : stargates,
-			star_id : star_id,
-			star_name : star_name,
-			star_color : star_color,
-			luminosity : luminosity
-		}).write()
-		db.update('count', n=> n+1).write()
-		console.log(count)
+		let star_info = await esi.star_info(star_id)
+		let star_name = star_info.name
+		let luminosity = star_info.luminosity
+		let star_spectral_class = star_info.spectral_class
+		let spectral = star_spectral_class.replace(/\s/ig,'')
+		if(spectral === 'A0IV2'){
+			let spectral = 'A0IV'
+			let star_spectral_info = parser.parse(spectral,true)
+			let star_color = star_spectral_info.data.colour
+			db.get('system').push({
+				system_id : system_id,
+				system_name : system_name,
+				constellation_id : constellation_id,
+				system_position : system_position,
+				stargates : stargates,
+				star_id : star_id,
+				star_name : star_name,
+				star_color : star_color,
+				luminosity : luminosity
+			}).write()
+			db.update('count', n=> n+1).write()
+			console.log(count)
+		}else{
+			let star_spectral_info = parser.parse(spectral,true)
+			let star_color = star_spectral_info.data.colour
+			db.get('system').push({
+				system_id : system_id,
+				system_name : system_name,
+				constellation_id : constellation_id,
+				system_position : system_position,
+				stargates : stargates,
+				star_id : star_id,
+				star_name : star_name,
+				star_color : star_color,
+				luminosity : luminosity
+			}).write()
+			db.update('count', n=> n+1).write()
+			console.log(count)
+		}
 	}
 }
 
