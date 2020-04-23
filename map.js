@@ -29,11 +29,7 @@ async function systemDB(){
 			system_name : system_name,
 			constellation_id : constellation_id,
 			system_position : system_position,
-			stargates : stargates,
-			star_id : star_id,
-			star_name : star_name,
-			star_color : star_color,
-			luminosity : luminosity
+			stargates : stargates
 		}).write()
 		db.update('count', n=> n+1).write()
 		console.log(count)
